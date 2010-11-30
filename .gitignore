@@ -1,0 +1,4 @@
+*.pyc
+log.txt
+/.twitter_history
+/.twitter_oauth
