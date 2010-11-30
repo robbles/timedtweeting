@@ -16,6 +16,9 @@ from statuses import render_random_status
 CONSUMER_KEY='Upy5Rq4COQZNtijXS5w'
 CONSUMER_SECRET='iRS0orX3AnXFSZECdQEr3rgFbc3zsfBSQek4TGS17M'
 
+# Minimum amount of status updates for an account to be processed
+MIN_STATUSES = 6000
+
 # ASCII art from http://strawp.net/
 FAILWHALE = """
 Twitter is over capacity.
@@ -72,7 +75,7 @@ class TimeTweeter(object):
             return
 
         # Filter out the user's we've already done
-        new_users = [user for user in picks if user['id'] not in self.history]
+        new_users = [user for user in picks if user['id'] not in self.history and user['statuses_count'] > MIN_STATUSES]
 
         # Give up for now if we don't find any new ones
         if not new_users:
